@@ -1,0 +1,4 @@
+repository "3dchessow@vladislav17052006@cloud"
+  path "/"
+    br "/main"
+    co "/main"
