@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChessPawnMoveScript : MonoBehaviour
+public class ChessPawnMoveScript : ChessPieceBase
 {
-    private string Team;
+    public string team;
     private bool isPieceSelected = false, hasStarted = false;
     private Vector3 targetPosition;
     private Material originalMaterial;
-    public Material highlightMaterial; // Підсвічуваний матеріал
+    public Material highlightMaterial; // ПіпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     private void Start()
     {
         originalMaterial = GetComponent<Renderer>().material;
-        // Збережіть початковий матеріал для кожного підоб'єкту
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ'пїЅпїЅпїЅпїЅ
         Renderer[] renderers = GetComponentsInChildren<Renderer>();
         foreach (Renderer renderer in renderers)
         {
@@ -39,11 +39,11 @@ public class ChessPawnMoveScript : MonoBehaviour
             {
                 if (hit.collider.CompareTag("ChessCube") && IsLegalMove(transform.position, hit.collider.bounds.center))
                 {
-                    targetPosition = hit.collider.bounds.center; // Отримуємо центр куба
+                    targetPosition = hit.collider.bounds.center; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
                     TeleportPiece();
                     isPieceSelected = false;
                     hasStarted = true;
-                    RestoreMaterial(); // Повертаємо матеріал до початкового після телепортації
+                    RestoreMaterial(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 }
 
             }
@@ -57,26 +57,18 @@ public class ChessPawnMoveScript : MonoBehaviour
 
     private void HighlightPiece()
     {
-        // Отримати всі дочірні об'єкти фігури
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         Renderer[] childRenderers = GetComponentsInChildren<Renderer>(true);
 
-        // Змінити матеріал для кожної частини фігури
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         foreach (Renderer renderer in childRenderers)
         {
             renderer.material = highlightMaterial;
         }
     }
 
-    private void RestoreMaterial()
-    {
-        isPieceSelected = false;
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-        foreach (Renderer renderer in renderers)
-        {
-            renderer.material = originalMaterial;
-        }
-    }
-    private bool IsPositionOccupied(Vector3 position) //Перевірка, чи куб зайнятий іншою фігурою
+    
+    private bool IsPositionOccupied(Vector3 position) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
 
         Collider[] colliders = Physics.OverlapSphere(position, 0.7f);
@@ -90,7 +82,7 @@ public class ChessPawnMoveScript : MonoBehaviour
         return false;
     }
 
-    private bool IsLegalMove(Vector3 Pawn_position, Vector3 Cube_position) //Перевірка легальності руху
+    private bool IsLegalMove(Vector3 Pawn_position, Vector3 Cube_position) //ГЏГҐГ°ГҐГўВіГ°ГЄГ  Г«ГҐГЈГ Г«ГјГ­Г®Г±ГІВі Г°ГіГµГі
     {
         int Pawn_Row = ChessCoordinates.PositionToRow(Pawn_position), Cube_Row = ChessCoordinates.PositionToRow(Cube_position);
         char Pawn_File = ChessCoordinates.PositionToFile(Pawn_position), Cube_File = ChessCoordinates.PositionToFile(Cube_position);
@@ -101,13 +93,13 @@ public class ChessPawnMoveScript : MonoBehaviour
         if (IsPositionOccupied(Cube_position) && (Pawn_File == Cube_File + 1 || Pawn_File == Cube_File - 1) && Cube_Row - Pawn_Row == 1)
         {
 
-            Debug.Log("PositionOccupied, getting trying to find it....");
-            ChessPawnMoveScript[] allPieces = FindObjectsOfType<ChessPawnMoveScript>();
-            foreach (ChessPawnMoveScript piece in allPieces)
+            Debug.Log("Position Occupied, getting trying to find it....");
+            ChessPieceBase[] allPieces = FindObjectsOfType<ChessPieceBase>();
+            foreach (ChessPieceBase piece in allPieces)
             {
                 if (ChessCoordinates.PositionToFile(piece.transform.position) == Cube_File && ChessCoordinates.PositionToRow(piece.transform.position) == Cube_Row)
                 {
-                    if (piece.GetTeam() == this.Team) return false;
+                    if (piece.GetTeam() == this.team) return false;
                     Destroy(piece.gameObject);
                     return true;
                 }
@@ -119,21 +111,22 @@ public class ChessPawnMoveScript : MonoBehaviour
         return false;
     }
 
-    private void DeselectAllPieces()
-    {
-        ChessPawnMoveScript[] allPieces = FindObjectsOfType<ChessPawnMoveScript>();
-        foreach (ChessPawnMoveScript piece in allPieces)
-        {
-            piece.RestoreMaterial();
-        }
-    }
 
-    public string GetTeam()
+    public override string GetTeam()
     {
-        return this.Team;
+        return team;
     }
-    public void SetTeam(string team)
+    public override void SetTeam(string team)
     {
-        this.Team = team;
+        this.team = team;
+    }
+    public override void RestoreMaterial()
+    {
+        isPieceSelected = false;
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.material = originalMaterial;
+        }
     }
 }

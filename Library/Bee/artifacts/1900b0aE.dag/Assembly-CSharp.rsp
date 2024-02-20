@@ -355,7 +355,9 @@
 -analyzer:"D:/Unity/2022.3.20f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/ChessBoardCreation.cs"
 "Assets/Scripts/ChessCoordinates.cs"
+"Assets/Scripts/ChessOfficerMoveScript.cs"
 "Assets/Scripts/ChessPawnMoveScript.cs"
+"Assets/Scripts/ChessPieceBase.cs"
 -langversion:9.0
 
 /deterministic

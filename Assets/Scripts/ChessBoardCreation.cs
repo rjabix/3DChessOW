@@ -5,22 +5,23 @@ using UnityEngine;
 public class ChessBoardEmptyScript : MonoBehaviour
 {
 
-    public GameObject tilePrefab, pawnPrefab; // Declare the tilePrefab variable
+    public GameObject tilePrefab, pawnPrefab, officerPrefab; // Declare the Prefabs
     public Material lightSquareMaterial;
     public Material darkSquareMaterial;
 
-    void Start()
+    private void Start()
     {
         CreateGraphicalBoard();
         CreatePawns();
+        CreateOfficers();
     }
 
-    void Update()
+    private void Update()
     {
 
     }
 
-    void CreateGraphicalBoard()
+    private void CreateGraphicalBoard()
     {
         for (int file = 0; file < 8; file++)
         {
@@ -39,7 +40,7 @@ public class ChessBoardEmptyScript : MonoBehaviour
 
 
 
-    void DrawSquare(Material squareColour, Vector3 position)
+    private void DrawSquare(Material squareColour, Vector3 position)
     {
 
         GameObject tile = Instantiate(tilePrefab, new Vector3(position.x, 0, position.z), Quaternion.identity);
@@ -49,7 +50,7 @@ public class ChessBoardEmptyScript : MonoBehaviour
         renderer.material = squareColour;
     }
 
-    void CreatePawns()
+    private void CreatePawns()
     {
         //White
         for(int file = 0; file < 8; file++)
@@ -61,5 +62,18 @@ public class ChessBoardEmptyScript : MonoBehaviour
             pawnScript.SetTeam("White");
         }
         //Black ...{}
+    }
+
+    private void CreateOfficers()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject officer = Instantiate(officerPrefab, new Vector3(-1.5f + i * 3f, 1, -3.5f), Quaternion.identity);
+            officer.tag = "ChessPiece";
+            Renderer renderer = officer.GetComponent<Renderer>();
+            ChessOfficerMoveScript officerScript = officer.GetComponent<ChessOfficerMoveScript>();
+            officerScript.SetTeam("White");
+        }
+        
     }
 }

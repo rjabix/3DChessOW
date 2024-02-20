@@ -30,6 +30,18 @@ public class ChessCoordinates : MonoBehaviour
         {7,  3.5f},
     };
 
+    public static Dictionary<int, char> numberToLetterFile = new Dictionary<int, char>()
+    {
+        {0, 'a'},
+        {1, 'b'},
+        {2, 'c'},
+        {3, 'd'},
+        {4, 'e'},
+        {5, 'f'},
+        {6, 'g'},
+        {7, 'h'}
+    };
+
     // Функція для переведення літерних координат в числові
     public static float FileToPosition(char letter)
     {
@@ -44,7 +56,7 @@ public class ChessCoordinates : MonoBehaviour
         }
     }
 
-    public static float RowToPosition(char letter)
+    public static float RowToPosition(int letter)
     {
         if (rowToPosition.ContainsKey(letter))
         {
@@ -55,6 +67,11 @@ public class ChessCoordinates : MonoBehaviour
             Debug.LogError("Invalid letter coordinate: " + letter);
             return -1;
         }
+    }
+
+    public static Vector3 RowFileToPosition(int row, char file)
+    {
+        return new Vector3(FileToPosition(file), 1, RowToPosition(row));
     }
 
     public static char PositionToFile(Vector3 position)
