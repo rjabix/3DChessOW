@@ -7,8 +7,14 @@ MonoImporter:
   - tilePrefab: {fileID: 4752295617932882490, guid: 96f49525c7f4fdf45842abe014544afe, type: 3}
   - pawnPrefab: {fileID: 2395982056682776835, guid: 39b7a1463452e6b4ca247ffc9b3baed6, type: 3}
   - officerPrefab: {fileID: 1496419272731886701, guid: aede39d0fb849a14aa97ec1a94fe1ef1, type: 3}
-  - lightSquareMaterial: {instanceID: 0}
-  - darkSquareMaterial: {instanceID: 0}
+  - rookPrefab: {instanceID: 0}
+  - knightPrefab: {instanceID: 0}
+  - queenPrefab: {instanceID: 0}
+  - kingPrefab: {instanceID: 0}
+  - lightSquareMaterial: {fileID: 2100000, guid: b35b735a0ca600240b0bee850fda120b, type: 2}
+  - darkSquareMaterial: {fileID: 2100000, guid: f2161b556e97f704e97dafb371f4ff18, type: 2}
+  - lightPieceMaterial: {fileID: 2100000, guid: cafbf79eedabfbb4ea6c251980966889, type: 2}
+  - darkPieceMaterial: {fileID: 2100000, guid: fd474010ed3209f408fc94f6e7d06fdf, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

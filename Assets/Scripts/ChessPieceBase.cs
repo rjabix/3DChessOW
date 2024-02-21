@@ -1,10 +1,9 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class ChessPieceBase : MonoBehaviour
 {
-    // Метод, який повертає команду фігури
     public abstract string GetTeam();
 
     public abstract void SetTeam(string Team);

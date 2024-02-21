@@ -60,11 +60,17 @@
     <Analyzer Include="D:\Unity\2022.3.20f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ChessKnightMoveScript.cs" />
     <Compile Include="Assets\Scripts\ChessOfficerMoveScript.cs" />
+    <Compile Include="Assets\Scripts\MoveController.cs" />
+    <Compile Include="Assets\Scripts\ChessCastleMoveScript.cs" />
     <Compile Include="Assets\Scripts\ChessCoordinates.cs" />
     <Compile Include="Assets\Scripts\ChessPawnMoveScript.cs" />
     <Compile Include="Assets\Scripts\ChessBoardCreation.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\ChessQueenMoveScript.cs" />
     <Compile Include="Assets\Scripts\ChessPieceBase.cs" />
+    <Compile Include="Assets\Scripts\ChessKingMoveScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

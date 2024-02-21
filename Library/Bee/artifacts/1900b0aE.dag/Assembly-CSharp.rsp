@@ -353,11 +353,17 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -analyzer:"D:/Unity/2022.3.20f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"D:/Unity/2022.3.20f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+"Assets/Scripts/CameraController.cs"
 "Assets/Scripts/ChessBoardCreation.cs"
+"Assets/Scripts/ChessCastleMoveScript.cs"
 "Assets/Scripts/ChessCoordinates.cs"
+"Assets/Scripts/ChessKingMoveScript.cs"
+"Assets/Scripts/ChessKnightMoveScript.cs"
 "Assets/Scripts/ChessOfficerMoveScript.cs"
 "Assets/Scripts/ChessPawnMoveScript.cs"
 "Assets/Scripts/ChessPieceBase.cs"
+"Assets/Scripts/ChessQueenMoveScript.cs"
+"Assets/Scripts/MoveController.cs"
 -langversion:9.0
 
 /deterministic

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChessOfficerMoveScript : ChessPieceBase
 {
-    
+
     public string team;
     private bool isPieceSelected = false;
     private Vector3 targetPosition;
@@ -24,9 +24,12 @@ public class ChessOfficerMoveScript : ChessPieceBase
 
     private void OnMouseDown()
     {
-        DeselectAllPieces();
-        isPieceSelected = true;
-        HighlightPiece();
+        if (MoveController.Instance.GetCurrentMove() == team)
+        {
+            DeselectAllPieces();
+            isPieceSelected = true;
+            HighlightPiece();
+        }
     }
 
     private void Update()
@@ -40,10 +43,11 @@ public class ChessOfficerMoveScript : ChessPieceBase
             {
                 if (hit.collider.CompareTag("ChessCube") && IsLegalMove(transform.position, hit.collider.bounds.center))
                 {
-                    targetPosition = hit.collider.bounds.center; // �������� ����� ����
+                    targetPosition = hit.collider.bounds.center;
                     TeleportPiece();
                     isPieceSelected = false;
-                    RestoreMaterial(); // ��������� ������� �� ����������� ���� ������������
+                    RestoreMaterial();
+                    MoveController.Instance.ChangeMove();
                 }
 
             }
@@ -142,7 +146,7 @@ public class ChessOfficerMoveScript : ChessPieceBase
             if (IsPositionOccupied(position) && position != end)
             {
                 Debug.Log("Currently checking cube " + ChessCoordinates.PositionToFile(position) + ChessCoordinates.PositionToRow(position));
-                return true; 
+                return true;
             }
         }
 
